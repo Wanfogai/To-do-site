@@ -1,0 +1,66 @@
+body {
+  display: flex;
+  background-color: white;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.page,
+#new-page {
+  width: 250px;
+  height: 325px;
+
+  margin: 10px;
+  padding: 10px 10px 10px 10px;
+
+  border-radius: 5px;
+
+  background-color: #faebd7;
+}
+
+#new-page {
+  opacity: 50%;
+}
+
+.page {
+  overflow: auto;
+}
+
+.page #page-title {
+  font-size: 2em;
+  padding: 0px 0px 5px 0px;
+}
+
+.dellButt{
+  background-color: red;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  border-radius: 6px;
+}
+
+.dellButt:hover
+{
+  background-color: darkred;
+  cursor: pointer;
+}
+
+.page .item,
+.new-item {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 4px;
+  margin-top: 5px;
+
+  background-color: #fcdeb5;
+  border-radius: 5px;
+}
+
+#new-item {
+  opacity: 50%;
+}
+
+#add:hover {
+  background-color: darkgreen;
+}
