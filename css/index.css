@@ -22,6 +22,11 @@ body {
   opacity: 50%;
 }
 
+#new-page:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 .page {
   overflow: auto;
 }
@@ -30,6 +35,16 @@ body {
   font-size: 2em;
   padding: 0px 0px 5px 0px;
 }
+
+.new-item {
+  opacity: 50%;
+}
+
+.new-item:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 
 .dellButt{
   background-color: red;
@@ -57,10 +72,5 @@ body {
   border-radius: 5px;
 }
 
-#new-item {
-  opacity: 50%;
-}
 
-#add:hover {
-  background-color: darkgreen;
-}
+
