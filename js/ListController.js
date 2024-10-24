@@ -3,32 +3,31 @@ window.onload = function () {
     setTimeout(AddPage(), 0);
 }
 
+function ReIndex(control) {
+    for (let index = 0; index < control.children.length; index++) {
+        control.children[index].id = index;
+    }
+}
+
 function RemoveChild(control, childNum) {
     control.removeChild(control.children[childNum])
-    for (let index = 0; index < control.children.length; index++) {
-        control.children[index].id = index;
-
-    }
+    ReIndex(control);
 }
-
-
 
 function ToDown(control, itemId) {
-    control.appendChild(control.getElementsByClassName("item")[itemId-1]);
-    for (let index = 0; index < control.children.length; index++) {
-        control.children[index].id = index;
-    }
+    control.appendChild(control.getElementsByClassName("item")[itemId - 1]);
+    ReIndex(control);
 }
+
 function GetContent(num) {
     return document.getElementsByClassName('page')[parseInt(num)].getElementsByClassName("content")[0];
 }
 
 function AddItem(event, parentNum) {
+    const items = GetContent(parentNum - 1).children.length - 1;
 
     const item = document.createElement("div");
     item.className = "item";
-
-    const items = GetContent(parentNum - 1).children.length - 1;
     item.id = items + 1
 
     const description = document.createElement("span");
@@ -100,5 +99,6 @@ function AddPage(event) {
     document.body.insertBefore(
         newPage,
         document.getElementById(-pages.length)
-    ); AddItem(event, newPage.id)
+    );
+    AddItem(event, newPage.id)
 }
