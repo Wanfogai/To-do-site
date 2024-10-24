@@ -3,8 +3,6 @@ window.onload = function () {
     setTimeout(AddPage(), 0);
 }
 
-
-
 function RemoveChild(control, childNum) {
     control.removeChild(control.children[childNum])
     for (let index = 0; index < control.children.length; index++) {
@@ -14,6 +12,13 @@ function RemoveChild(control, childNum) {
 }
 
 
+
+function ToDown(control, itemId) {
+    control.appendChild(control.getElementsByClassName("item")[itemId-1]);
+    for (let index = 0; index < control.children.length; index++) {
+        control.children[index].id = index;
+    }
+}
 function GetContent(num) {
     return document.getElementsByClassName('page')[parseInt(num)].getElementsByClassName("content")[0];
 }
@@ -42,6 +47,7 @@ function AddItem(event, parentNum) {
 
     const check = document.createElement("input");
     check.type = "checkbox";
+    check.onchange = () => { if (check.checked) ToDown(GetContent(parentNum - 1), item.id); };
 
     actionContainer.appendChild(dellButt);
     actionContainer.appendChild(check);

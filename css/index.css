@@ -47,7 +47,7 @@ body {
 
 .actionContainer{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .new-item:hover {
