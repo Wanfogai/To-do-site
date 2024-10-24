@@ -18,6 +18,11 @@ body {
   background-color: #faebd7;
 }
 
+.header{
+  display:flex;
+  justify-content: space-between;
+}
+
 #new-page {
   opacity: 50%;
 }
@@ -40,12 +45,34 @@ body {
   opacity: 50%;
 }
 
+.actionContainer{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .new-item:hover {
   opacity: 80%;
   cursor: pointer;
 }
 
-.dellButt {
+.page:hover{
+  .pageButt{
+    display: block;
+  }
+}
+
+.item:hover
+{
+  .itemButt{
+    display: block;
+  }
+}
+
+.hovere{
+  background-color: aqua;
+}
+
+.itemButt,.pageButt {
   display: none;
   background-color: red;
   text-align: center;
@@ -54,13 +81,9 @@ body {
   border-radius: 6px;
 }
 
-.dellButt:hover {
+.itemButt:hover, .pageButt:hover{
   background-color: darkred;
   cursor: pointer;
-}
-
-.item:hover + .dellButt {
-  display: block;
 }
 
 .page .item,

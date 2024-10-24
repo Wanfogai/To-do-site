@@ -3,9 +3,7 @@ window.onload = function () {
     setTimeout(AddPage(), 0);
 }
 
-function GetContent(num) {
-    return document.getElementsByClassName('page')[parseInt(num)].getElementsByClassName("content")[0];
-}
+
 
 function RemoveChild(control, childNum) {
     control.removeChild(control.children[childNum])
@@ -13,6 +11,11 @@ function RemoveChild(control, childNum) {
         control.children[index].id = index;
 
     }
+}
+
+
+function GetContent(num) {
+    return document.getElementsByClassName('page')[parseInt(num)].getElementsByClassName("content")[0];
 }
 
 function AddItem(event, parentNum) {
@@ -27,20 +30,24 @@ function AddItem(event, parentNum) {
     description.className = "string";
     description.onclick = (event) => { event.target.contentEditable = true };
     description.onblur = (event) => { event.target.contentEditable = false };
-
     description.textContent = "Пункт " + (items + 1);
 
-    const dellButt = document.createElement("span");
+    const actionContainer = document.createElement("div");
+    actionContainer.className = "actionContainer";
+
+    const dellButt = document.createElement("spab");
     dellButt.textContent = "X";
-    dellButt.className = "dellButt";
+    dellButt.className = "itemButt";
     dellButt.onclick = () => RemoveChild(GetContent(parentNum - 1), item.id);
 
     const check = document.createElement("input");
     check.type = "checkbox";
 
+    actionContainer.appendChild(dellButt);
+    actionContainer.appendChild(check);
+
     item.appendChild(description);
-    item.appendChild(check);
-    item.appendChild(dellButt);
+    item.appendChild(actionContainer);
 
     GetContent(parentNum - 1).children[items].after(item);
 }
@@ -50,7 +57,6 @@ function AddPage(event) {
     const pages = document.getElementsByClassName("page");
 
     const newPage = document.createElement("div");
-
     newPage.id = pages.length + 1;
     newPage.className = "page page-" + (pages.length + 1);
 
@@ -60,9 +66,12 @@ function AddPage(event) {
     pageTitle.onblur = (event) => { event.target.contentEditable = false };
     pageTitle.textContent = "Список " + newPage.id;
 
-    const dellButt = document.createElement("spab");
+    const header = document.createElement("div");
+    header.className = "header";
+
+    const dellButt = document.createElement("span");
     dellButt.textContent = "X";
-    dellButt.className = "dellButt";
+    dellButt.className = "pageButt";
     dellButt.onclick = () => document.body.removeChild(document.getElementsByClassName("page-" + newPage.id)[0])
 
     const content = document.createElement("div");
@@ -76,8 +85,10 @@ function AddPage(event) {
 
     content.appendChild(newItem)
 
-    newPage.appendChild(dellButt);
-    newPage.appendChild(pageTitle);
+    header.appendChild(pageTitle);
+    header.appendChild(dellButt);
+
+    newPage.appendChild(header);
     newPage.appendChild(content);
 
     document.body.insertBefore(
