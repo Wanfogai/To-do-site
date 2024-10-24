@@ -30,7 +30,7 @@ function AddItem(event, parentNum) {
 
     description.textContent = "Пункт " + (items + 1);
 
-    const dellButt = document.createElement("spab");
+    const dellButt = document.createElement("span");
     dellButt.textContent = "X";
     dellButt.className = "dellButt";
     dellButt.onclick = () => RemoveChild(GetContent(parentNum - 1), item.id);
@@ -63,7 +63,7 @@ function AddPage(event) {
     const dellButt = document.createElement("spab");
     dellButt.textContent = "X";
     dellButt.className = "dellButt";
-    dellButt.onclick = () => document.body.removeChild(document.getElementsByClassName("page-" + newPage.id)[0]) 
+    dellButt.onclick = () => document.body.removeChild(document.getElementsByClassName("page-" + newPage.id)[0])
 
     const content = document.createElement("div");
     content.className = "content";

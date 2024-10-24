@@ -45,8 +45,8 @@ body {
   cursor: pointer;
 }
 
-
-.dellButt{
+.dellButt {
+  display: none;
   background-color: red;
   text-align: center;
   height: 20px;
@@ -54,10 +54,13 @@ body {
   border-radius: 6px;
 }
 
-.dellButt:hover
-{
+.dellButt:hover {
   background-color: darkred;
   cursor: pointer;
+}
+
+.item:hover + .dellButt {
+  display: block;
 }
 
 .page .item,
@@ -71,6 +74,3 @@ body {
   background-color: #fcdeb5;
   border-radius: 5px;
 }
-
-
-
