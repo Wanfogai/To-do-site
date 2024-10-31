@@ -12,6 +12,7 @@ function AddPage(event) {
 
   if (Pages.length <= 1) document.body.appendChild(NewPage.Node);
   else document.body.insertBefore(NewPage.Node, Pages[1].Node);
+  document.body.lastChild.af;
 }
 
 class Page {
@@ -21,7 +22,7 @@ class Page {
 
   constructor(PageCount) {
     const newPage = document.createElement("div");
-    newPage.className = "page page-" + (PageCount + 1);
+    newPage.className = "page";
 
     const pageTitle = document.createElement("div");
     pageTitle.id = "page-title";
@@ -50,21 +51,21 @@ class Page {
     newItem.className = "new-item";
     newItem.textContent = "Добавить";
 
-    content.appendChild(newItem);
-
     header.appendChild(pageTitle);
     header.appendChild(dellButt);
 
     newPage.appendChild(header);
     newPage.appendChild(content);
 
+    content.before(newItem);
+
     this.Node = newPage;
     this.CurrentContent = content;
   }
 
   AddItem() {
-    const NewItem = new Item(this.Items.length, this.CurrentContent);
-    this.CurrentContent.lastChild.after(NewItem.Node);
+    const NewItem = new Item(this.Items.length, this);
+    this.CurrentContent.appendChild(NewItem.Node);
     this.Items.push(NewItem);
   }
 }
@@ -72,7 +73,7 @@ class Page {
 class Item {
   Node;
   Parent;
-
+  CurrentNumber;
   constructor(itemCount, parent) {
     const item = document.createElement("div");
     item.className = "item";
@@ -93,10 +94,19 @@ class Item {
     const dellButt = document.createElement("spab");
     dellButt.textContent = "X";
     dellButt.className = "itemButt";
-    dellButt.onclick = () => this.Parent.removeChild(this.Node);
+    dellButt.onclick = () => this.Parent.CurrentContent.removeChild(this.Node);
 
     const check = document.createElement("input");
     check.type = "checkbox";
+    check.onchange = () => {
+      if (check.checked) this.Parent.CurrentContent.lastChild.after(this.Node);
+      else {
+        this.Parent.CurrentContent.insertBefore(
+          this.Node,
+          this.Parent.CurrentContent.children[this.CurrentNumber]
+        );
+      }
+    };
 
     actionContainer.appendChild(dellButt);
     actionContainer.appendChild(check);
@@ -104,6 +114,7 @@ class Item {
     item.appendChild(description);
     item.appendChild(actionContainer);
 
+    this.CurrentNumber = itemCount;
     this.Node = item;
     this.Parent = parent;
   }

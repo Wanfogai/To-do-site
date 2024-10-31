@@ -3,6 +3,7 @@ body {
   background-color: white;
   flex-direction: row;
   flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
 }
 
 .page,
